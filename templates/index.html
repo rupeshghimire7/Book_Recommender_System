@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Book Recommender System</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    
+    <body class='bg-slate-900 py-10'>
+        
+        <div class='container mx-auto grid grid-cols-4 gap-4'>
+            {% for i in range(book_name|length) %}
+            <div class='w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300'>
+                <div class='flex items-center justify-center'><img src="{{image[i]}}"/></div>
+                <div class='p-2'>
+                    <p class="text-gray-100">{{book_name[i]}}</p>
+                    <p class="text-red-500">{{author[i]}}</p>
+                    <p class="text-gray-500">{{year[i]}}</p>
+
+       <!--             Votes: {{rating_count[i]}}
+                    Rating: {{avg_rating[i]}} --> 
+   
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </body>
+
+</html>

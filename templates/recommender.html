@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Book Recommender System</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    
+    <body class='bg-slate-900 py-10'>
+     
+        
+        <div class='bg-green-800 container m-auto flex p-1'>
+            <a href='/'> <div class='bg-white h-auto w-24 m-2 p-2 hover:shadow-2xl'>  Home </div> </a>
+        <form action='/recommender',method="POST">
+            <input
+            name='input_book_name'
+            type="search"
+            class="relative m-0 block w-[1px] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-white focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="button-addon2" />
+
+            <a href='/recommender'> <button type='submit' class="bg-white h-auto w-24 m-2 p-2 border-white-2" placeholder="Recommender">Recommender</button></a>
+        </form>
+
+        </div>
+        
+        {% if result_books %}
+        <h1>Best Result for your search</h1>
+        <div class='w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300'>
+            <div class='flex items-center justify-center'><img src="{{result_books[0][2]}}"/></div>
+            <div class='p-2'>
+                <p class="text-gray-100">{{result_books[0][0]}}</p>
+                <p class="text-red-500">{{result_books[0][1]}}</p>
+            </div>
+        </div>
+
+
+        <h1> If you like it, Recommended For You</h1>
+        <div class='container mx-auto grid grid-cols-4 gap-4'>
+            {% for i in result_books|exclude_first %}
+            <div class='w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300'>
+                <div class='flex items-center justify-center'><img src="{{i[2]}}"/></div>
+                <div class='p-2'>
+                    <p class="text-gray-100">{{i[0]}}</p>
+                    <p class="text-red-500">{{i[1]}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </body>
+
+</html>

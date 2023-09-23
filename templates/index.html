@@ -1,49 +1,87 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Book Recommender System</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+  <head>
+    <meta charset="utf-8" />
+    <title>Book Recommender System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-    </head>
-    
-    <body class='bg-slate-900 py-10'>
+  <body class="bg-slate-900 pb-10">
 
-        <div class='bg-green-800 container m-auto flex items-center p-1'>
-            <a href='/'> <div class='bg-white w-24 mx-2 p-2  hover:shadow-2xl'>  Home </div> </a>
+    <div class="sticky left-0 top-0 right-0">
+        <header class="  h-[80px] bg-green-600 m-auto flex items-center py-2">
+          <div class='container p-2 mx-auto'>
+              <div
+                class=" flex justify-between w-full items-center"
+              >
+                <a href="/" class="text-white hover:border-gray-200 border-b-2 border-transparent duration-300">Home </a>
+                <form
+                  action="/recommender" method="POST"
+                  class="items-center flex  my-auto"
+                >
+                  <input
+                    name="input_book_name"
+                    type="search"
+                    class="placeholder:text-white outline-none border-2 border-blue-700 bg-transparent text-white p-1 m-auto"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
         
-            <form class='flex items-center border-2' action='/recommender', method="POST">
-            <input
-            name='input_book_name'
-            type="search"
-            class='border-white border-2 bg-transparent text-white p-1 m-auto'
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="button-addon2" />
+                  <button type='submit' class='border-2 border-blue-700 h-full bg-blue-700 p-1'>
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z"
+                        fill="#ffffff"
+                      /></svg
+                  ></button>
+                </form>
+              </div>
+          </div>
+        </header>
+        <h1 class="container mx-auto p-2 bg-slate-900 py-4 text-5xl font-bold text-white ">
+            Popular 100 Books:
+          </h1>
+    </div>
 
-            <a href='/recommender'> <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z" fill="#080341"/>
-                </svg></a>
-        </form>
-
+    <main class="container p-2 mx-auto ">
+      <br />
+      <div class=" grid grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {% for i in range(book_name|length) %}
+        <div class="w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300">
+          <div class="flex items-center justify-center">
+            <img src="{{image[i]}}" />
+          </div>
+          <div class="p-2">
+            <p class="text-gray-100">{{book_name[i]}}</p>
+            <p class="text-red-500">{{author[i]}}</p>
+            <p class="text-gray-500">{{year[i]}}</p>
+            <p class="text-gray-200">Votes: {{rating_count[i]}}</p>
+            <p class="text-gray-200 flex items-center gap-1">
+              Rating: {{avg_rating[i]|floor}}
+              <svg
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="#00FFFF"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m12 17.328-5.403 3.286a.75.75 0 0 1-1.12-.813l1.456-6.155-4.796-4.123a.75.75 0 0 1 .428-1.316l6.303-.517 2.44-5.835a.75.75 0 0 1 1.384 0l2.44 5.835 6.303.517a.75.75 0 0 1 .427 1.316l-4.795 4.123 1.456 6.155a.75.75 0 0 1-1.12.813L12 17.328z"
+                  fill="#00FFFF"
+                />
+              </svg>
+            </p>
+          </div>
         </div>
-        <h1 class='text-5xl font-bold text-white my-4 mx-10'>Popular 100 Books:</h1>
-        <br>
-        <div class='container mx-auto grid grid-cols-4 gap-4'>
-            {% for i in range(book_name|length) %}
-            <div class='w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300'>
-                <div class='flex items-center justify-center'><img src="{{image[i]}}"/></div>
-                <div class='p-2'>
-                    <p class="text-gray-100">{{book_name[i]}}</p>
-                    <p class="text-red-500">{{author[i]}}</p>
-                    <p class="text-gray-500">{{year[i]}}</p>
-                    <p class="text-gray-200">Votes: {{rating_count[i]}}</p>
-                    <p class="text-gray-200 flex items-center gap-1">Rating: {{avg_rating[i]|floor}} <svg width="18px" height="18px" viewBox="0 0 24 24" fill="#00FFFF" xmlns="http://www.w3.org/2000/svg"><path d="m12 17.328-5.403 3.286a.75.75 0 0 1-1.12-.813l1.456-6.155-4.796-4.123a.75.75 0 0 1 .428-1.316l6.303-.517 2.44-5.835a.75.75 0 0 1 1.384 0l2.44 5.835 6.303.517a.75.75 0 0 1 .427 1.316l-4.795 4.123 1.456 6.155a.75.75 0 0 1-1.12.813L12 17.328z" fill="#00FFFF"/></svg></p>
-   
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-    </body>
-
+        {% endfor %}
+      </div>
+    </main>
+  </body>
 </html>

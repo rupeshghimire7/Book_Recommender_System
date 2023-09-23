@@ -19,7 +19,7 @@ Users can explore trending books without specific queries.
 
 **Collaborative Filtering Recommender:**
 
-Users can **search** for a book and by using regex patterns, the recommender finds best match.
+Users can **search** for a book and by using regex patterns, the recommender finds the best match.
 The system identifies the best match for the user's query.
 Recommends 5 similar books based on cosine similarity.
 
@@ -31,13 +31,13 @@ To run this project locally, follow these steps:
 **Clone this repository:**
 
 ```
-git clone https://github.com/yourusername/book-recommender-system.git
+git clone https://github.com/rupeshghimire7/Book_Recommender_System.git
 ```
 
 **Navigate to the project directory:**
 
 ```
-cd book-recommender-system
+cd Book_Recommender_System
 ```
 
 **Install the required dependencies:**
@@ -75,6 +75,7 @@ Contributions are welcome! If you'd like to improve this project or add new feat
 
 ## Contact
 If you have any questions or suggestions, please feel free to contact us:
+
 **Twitter**:- [@Rupesh](https://www.twitter.com/@_rupesh_7)
  
 

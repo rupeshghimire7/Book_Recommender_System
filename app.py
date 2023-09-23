@@ -3,11 +3,11 @@ import pickle
 import re
 import numpy as np
 
-df = pickle.load(open('popular_books.pkl','rb'))
+df = pickle.load(open('pkl_files/popular_books.pkl','rb'))
 
-books = pickle.load(open('books.pkl','rb'))
-pt = pickle.load(open('pt.pkl','rb'))
-similarity_score = pickle.load(open('similarity_score.pkl','rb'))
+books = pickle.load(open('pkl_files/books.pkl','rb'))
+pt = pickle.load(open('pkl_files/pt.pkl','rb'))
+similarity_score = pickle.load(open('pkl_files/similarity_score.pkl','rb'))
 
 
 app = Flask(__name__)

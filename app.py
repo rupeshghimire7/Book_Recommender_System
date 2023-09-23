@@ -48,9 +48,10 @@ def recommend(book_name):
             temp_df = books[books['Book-Title'] == pt.index[i[0]]]
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Title'].values))
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Author'].values))
-            item.extend(list(temp_df.drop_duplicates('Book-Title')['Image-URL-L'].values))   
+            item.extend(list(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].values))   
 
             book_data.append(item) 
+        # print("BookData",book_data)
         return book_data
     else:
         print("Your provided Book Name didn't match. Searching for best match:")
@@ -58,6 +59,7 @@ def recommend(book_name):
         print("Searching for\t:", book)
         print("")
         if book != None:
+            print(book)
             recommend(book)
         else:
             print("Try for another book")
@@ -65,7 +67,8 @@ def recommend(book_name):
 @app.route('/recommender',methods=['post'])
 def recommender():
     input_book_name = request.form.get('input_book_name')
-    result_books = recommend(input_book_name) 
+    best_match = find_best_match(input_book_name)
+    result_books = recommend(best_match) 
     print(result_books)
     return render_template('recommender.html',result_books=result_books)
 

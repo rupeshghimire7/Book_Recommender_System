@@ -20,7 +20,7 @@
             aria-label="Search"
             aria-describedby="button-addon2" />
 
-            <a href='/recommender'> <button type='submit' class="bg-white h-auto w-24 m-2 p-2 border-white-2" placeholder="Recommender">Recommender</button></a>
+            <a href='/recommender'> <button type='submit' class="bg-white h-auto w-24 m-2 p-2 border-white-2" placeholder="Recommend">Recommend</button></a>
         </form>
 
         </div>
@@ -37,7 +37,7 @@
 
 
         <h1> If you like it, Recommended For You</h1>
-        <div class='container mx-auto grid grid-cols-4 gap-4'>
+        <div class='container mx-auto grid grid-cols-5 gap-4'>
             {% for i in result_books|exclude_first %}
             <div class='w-48 m-2 mx-auto rounded-md hover:shadow-2xl duration-300'>
                 <div class='flex items-center justify-center'><img src="{{i[2]}}"/></div>
